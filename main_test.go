@@ -24,8 +24,7 @@ func TestMain(t *testing.T) {
         } else {
             binaryBytes, typeBytes := id32.GetCover()
             fmt.Printf("%s - %-20s %-20s\n", k, v, string(typeBytes))
-			fmt.Printf("%x", binaryBytes[0:10])
-			a.Write(binaryBytes)
+            a.Write(binaryBytes)
         }
     }
 }

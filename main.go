@@ -359,8 +359,7 @@ func (this *ID3v2) GetFrameContent(fID string) ([]byte, error) {
     &编码转换
 */
 func encodeTranslate(source []byte, sourceEncode string, targetEncode string) []byte {
-    s := mahonia.NewDecoder("utf16").ConvertString(string(source))
-    _, t, _ := mahonia.NewDecoder("utf8").Translate([]byte(s), true)
+    s := mahonia.NewDecoder(sourceEncode).ConvertString(string(source))
+    _, t, _ := mahonia.NewDecoder(targetEncode).Translate([]byte(s), true)
     return t
 }
-

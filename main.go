@@ -311,21 +311,21 @@ func (this *ID3v2) GetCover() ([]byte, []byte) {
     
     binaryBytes := make([]byte, 0)
     inBinaryFlag := false
-	imgType := ""
+    imgType := ""
     for i = i; i < int64(len(bytes)); i = i + 1 {
         if false == inBinaryFlag {
             if 0xff == bytes[i + 0] && 0xd8 == bytes[i + 1] {
                 binaryBytes = append(binaryBytes, bytes[i])
                 inBinaryFlag = true
-				imgType = "JPEG"
+                imgType = "JPEG"
                 continue
             }
-			if 0x89 == bytes[i + 0] && 0x50 == bytes[i + 1] && 0x4e == bytes[i + 2] && 0x47 == bytes[i + 3] {
-			    binaryBytes = append(binaryBytes, bytes[i])
-				inBinaryFlag = true
-				imgType = "PNG"
-				continue
-			}
+            if 0x89 == bytes[i + 0] && 0x50 == bytes[i + 1] && 0x4e == bytes[i + 2] && 0x47 == bytes[i + 3] {
+                binaryBytes = append(binaryBytes, bytes[i])
+                inBinaryFlag = true
+                imgType = "PNG"
+                continue
+            }
         }
         if true == inBinaryFlag && "" != imgType {
             binaryBytes = append(binaryBytes, bytes[i])
@@ -333,13 +333,13 @@ func (this *ID3v2) GetCover() ([]byte, []byte) {
                 binaryBytes = append(binaryBytes, bytes[i + 1])
                 break
             }
-			if imgType == "PNG" && 0x4e == bytes[i + 0] && 0x44 == bytes[i + 1] && 0xae == bytes[i + 2] && 
+            if imgType == "PNG" && 0x4e == bytes[i + 0] && 0x44 == bytes[i + 1] && 0xae == bytes[i + 2] && 
                 0x42 == bytes[i + 3] && 0x60 == bytes[i + 4] && 0x82 == bytes[i + 5] {
                 binaryBytes = append(binaryBytes, bytes[i + 1])
-				binaryBytes = append(binaryBytes, bytes[i + 2])
-				binaryBytes = append(binaryBytes, bytes[i + 3])
-				binaryBytes = append(binaryBytes, bytes[i + 4])
-				binaryBytes = append(binaryBytes, bytes[i + 5])
+                binaryBytes = append(binaryBytes, bytes[i + 2])
+                binaryBytes = append(binaryBytes, bytes[i + 3])
+                binaryBytes = append(binaryBytes, bytes[i + 4])
+                binaryBytes = append(binaryBytes, bytes[i + 5])
                 break
             }
         }

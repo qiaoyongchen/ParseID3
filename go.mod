@@ -1,4 +1,4 @@
-module ParseID3
+module github.com/qiaoyongchen/ParseID3
 
 go 1.14
 
